@@ -1,0 +1,48 @@
+<ng-container *ngIf="tvShow">
+  <h2 mat-dialog-title>{{ tvShow.title }}</h2>
+
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <img [src]="tvShow.cover_url" class="img-fluid" />
+      </div>
+      <div class="col-sm-12 col-md-9 col-lg-9">
+        <!-- {{ tvShow.trailer_url }} -->
+        <div class="form-group row">
+          <h1 class="col display-1">
+            {{ tvShow.title }}
+            <h3 class="display-3 m-0" *ngIf="tvShow.directed_by && tvShow.directed_by!=null">
+              Directed By: {{ tvShow.directed_by }}
+            </h3>
+          </h1>
+
+          <div class="col text-end" *ngIf="tvShow.release_date && tvShow.release_date!=null">
+            <h3 class="display-3">{{ tvShow.release_date | date: "mediumDate" }}</h3>
+          </div>
+        </div>
+
+        <blockquote class="blockquote">
+          <p>{{ tvShow.overview }}</p>
+        </blockquote>
+        <iframe
+        width="560"
+        height="315"
+        [src]="tvShow.trailer_url | safeurl: 'resourceUrl'"
+        frameborder = "0"
+        allowfullscreen>
+      </iframe>
+        <!-- <iframe
+        width="560"
+        height="315"
+        [src]="'https://www.youtube.com/embed/'+ getYoutubeUrlId(tvShow.trailer_url) | safeurl: 'resourceUrl'"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe> -->
+      </div>
+    </div>
+
+
+  </mat-dialog-content>
+</ng-container>

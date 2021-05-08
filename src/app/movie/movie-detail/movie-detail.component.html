@@ -1,0 +1,66 @@
+<ng-container *ngIf="movie">
+  <h2 mat-dialog-title>{{ movie.title }}</h2>
+
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="cover-main">
+          <img [src]="movie.cover_url" class="img-fluid cover-height" />
+          <div class="countdown-overlay">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-9 col-lg-9">
+        <!-- {{ movie.trailer_url }} -->
+        <div class="form-group row">
+          <h1 class="col display-1">
+            {{ movie.title }}
+            <h3
+              class="display-3 m-0"
+              *ngIf="movie.directed_by && movie.directed_by != null"
+            >
+              Directed By: {{ movie.directed_by }}
+            </h3>
+          </h1>
+
+          <div class="col text-end">
+            <h3
+              class="display-3"
+              *ngIf="movie.release_date && movie.release_date != null"
+            >
+              Release Date: {{ movie.release_date | date: "mediumDate" }}
+              <h3
+                class="display-3 m-0"
+                *ngIf="
+                  movie.box_office &&
+                  movie.box_office != null &&
+                  movie.box_office != '0' &&
+                  movie.box_office != ''
+                "
+              >
+                Box Office: {{ movie.box_office | currency }}
+              </h3>
+            </h3>
+          </div>
+        </div>
+
+        <blockquote class="blockquote">
+          <p>{{ movie.overview }}</p>
+        </blockquote>
+        <iframe
+          width="560"
+          height="315"
+          [src]="
+            'https://www.youtube.com/embed/' +
+              getYoutubeUrlId(movie.trailer_url) | safeurl: 'resourceUrl'
+          "
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </mat-dialog-content>
+</ng-container>

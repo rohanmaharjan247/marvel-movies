@@ -1,0 +1,70 @@
+<div class="loading-spinner" *ngIf="loading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="row">
+  <div class="col">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Search movies..." id="searchText" (keyup.Enter)="filterMovies()" (change)="reset()" [(ngModel)]="searchText"/>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="filterMovies()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-paginator
+      [length]="totalPage"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOption"
+      (page)="onChangeEvent($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+<div class="row row-cols-1 row-cols-md-4 g-4" *ngIf="!loading">
+  <ng-container *ngIf="movieList.length > 0; else notFound">
+    <div class="col" *ngFor="let movies of movieList">
+      <a href="javascript:;" (click)="openDialog(movies.id)">
+        <div class="card h-100">
+          <img
+            class="card-img-top fixed-height"
+            [src]="movies.cover_url"
+            [alt]="movies.title"
+            *ngIf="
+              movies.cover_url != null &&
+                movies.cover_url &&
+                movies.cover_url != '';
+              else imagenotfound
+            "
+          />
+          <div class="card-body">
+            <h2 class="card-title">{{ movies.title }}</h2>
+
+            <p class="card-text">{{ movies.overview }}</p>
+            <footer
+              class="blockquote-footer text-right"
+              *ngIf="
+                movies.directed_by != '' &&
+                movies.directed_by != null &&
+                movies.directed_by
+              "
+            >
+              Directed By<cite title="Source Title">{{
+                movies.directed_by
+              }}</cite>
+            </footer>
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+</div>
+<ng-template #notFound>
+  <span style="text-align: center">Marvel movies not found.</span>
+</ng-template>
+<ng-template #imagenotfound>
+  <img
+    src="assets/image-not-found.jpg"
+    alt="Image not found"
+    style="height: 450px"
+  />
+</ng-template>

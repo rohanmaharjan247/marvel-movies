@@ -1,0 +1,55 @@
+<div class="loading-spinner" *ngIf="loading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="row">
+  <div class="col">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Search TV Shows..." id="searchText" (keyup.Enter)="filterMovies()" (change)="reset()" [(ngModel)]="searchText"/>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="filterMovies()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <mat-paginator
+      [length]="totalPage"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOption"
+      (page)="onChangeEvent($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+<div class="row row-cols-1 row-cols-md-4 g-4" *ngIf="!loading">
+  <ng-container *ngIf="tvShowList && tvShowList.length > 0; else notFound">
+    <div class="col" *ngFor="let tvshows of tvShowList">
+      <div class="card h-100">
+        <img
+          class="card-img-top fixed-height"
+          [src]="tvshows.cover_url"
+          [alt]="tvshows.title"
+        />
+        <div class="card-body">
+          <h2 class="card-title">{{ tvshows.title }}</h2>
+
+          <p class="card-text">{{ tvshows.overview }}</p>
+          <footer
+            class="blockquote-footer text-right"
+            *ngIf="
+            tvshows.directed_by != '' &&
+            tvshows.directed_by != null &&
+            tvshows.directed_by
+            "
+          >
+            Directed By<cite title="Source Title">{{
+              tvshows.directed_by
+            }}</cite>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-template #notFound>
+  <span style="text-align: center">Marvel TV shows not found.</span>
+</ng-template>
