@@ -1,18 +1,21 @@
-.timer{
+.timer {
   text-align: center;
   letter-spacing: -1px;
   display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 14px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
 }
 
-.timer span{
+.timer span {
   font-size: 14px;
-  margin: 0 3px 0 15px;
   color: #fff;
 }
 
-.timer small{
+.timer span:not(:first-child) {
+  margin-left: 10px;
+}
+
+.timer small {
   color: #fff;
 }

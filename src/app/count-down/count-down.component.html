@@ -1,25 +1,30 @@
-<div class="timer" *ngIf="checkReleased()">
-  <ng-container *ngIf="yearsToDDay > 0">
-    <span id="years">{{ yearsToDDay }}</span> <small>Year(s)</small>
-  </ng-container>
-  <ng-container *ngIf="monthsToDDay > 0">
-    <span id="months">{{ monthsToDDay }}</span>
-    <small>Months</small></ng-container
-  >
-  <ng-container *ngIf="daysToDDay > 0">
-    <span id="days">{{ daysToDDay }}</span>
-    <small>Days(s)</small></ng-container
-  >
-  <ng-container *ngIf="hoursToDDay > 0"
-    ><span id="hours">{{ hoursToDDay }} </span
-    ><small>Hours</small></ng-container
-  >
-  <ng-container *ngIf="minutesToDDay > 0"
-    ><span id="minutes">{{ minutesToDDay }}</span>
-    <small>Mins</small></ng-container
-  >
-  <ng-container
-    ><span id="seconds">{{ secondsToDDay }}</span>
-    <small>Secs</small></ng-container
-  >
+<div class="row">
+  <div class="col">
+    <div class="timer" *ngIf="checkReleased()">
+      <ng-container *ngIf="yearsToDDay > 0">
+      <span id="years">{{ yearsToDDay }} <small>&nbsp; Year(s)</small></span>
+      </ng-container>
+      <ng-container *ngIf="monthsToDDay > 0">
+        <span id="months">{{ monthsToDDay }} <small>&nbsp; Months</small></span>
+      </ng-container>
+      <ng-container *ngIf="daysToDDay > 0">
+        <span id="days">{{ daysToDDay }} <small>&nbsp; Days</small></span>
+      </ng-container>
+      <ng-container *ngIf="hoursToDDay > 0"
+        ><span id="hours"
+          >{{ hoursToDDay }} <small>&nbsp; Hours</small></span
+        ></ng-container
+      >
+      <ng-container *ngIf="minutesToDDay > 0"
+        ><span id="minutes"
+          >{{ minutesToDDay }} <small>&nbsp; Mins</small></span
+        >
+      </ng-container>
+      <ng-container
+        ><span id="seconds"
+          >{{ secondsToDDay }} <small>&nbsp; Secs</small></span
+        >
+      </ng-container>
+    </div>
+  </div>
 </div>

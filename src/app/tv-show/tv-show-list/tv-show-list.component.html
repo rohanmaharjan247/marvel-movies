@@ -20,7 +20,7 @@
     </mat-paginator>
   </div>
 </div>
-<div class="row row-cols-1 row-cols-md-4 g-4" *ngIf="!loading">
+<div class="row row-cols-1 row-cols-sm-12 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g-4" *ngIf="!loading">
   <ng-container *ngIf="tvShowList && tvShowList.length > 0; else notFound">
     <div class="col" *ngFor="let tvshows of tvShowList">
       <div class="card h-100">
