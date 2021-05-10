@@ -21,29 +21,11 @@ export class MovieDetailComponent implements OnInit {
   }
 
   getMovieDetail(){
-    console.log(this.data.movieId)
     if(this.data.movieId){
       this.marvelService.getMovieById(this.data.movieId).subscribe((data)=>{
-        console.log(data);
         this.movie = data.movie;
-        this.countdown();
       });
     }
-  }
-
-  countdown(){
-    const releasedate: Date = this.movie.release_date;
-    const now = new Date();
-    const releaseYear = releasedate.getFullYear();
-    const releaseMonth = releasedate.getMonth();
-    const releaseDay = releasedate.getDate();
-
-    const countDownYear = releaseYear - now.getFullYear();
-    const countDownMonth = releaseMonth - now.getMonth();
-    const countDownDay = releaseDay -  now.getDate();
-
-    console.log(countDownYear + "y", countDownMonth + "m", countDownDay + "d");
-
   }
 
   getYoutubeUrlId(url: string) {

@@ -3,13 +3,20 @@
 
   <mat-dialog-content class="mat-typography">
     <div class="row">
-      <div class="col-sm-12 col-md-3 col-lg-3">
-
-        <img [src]="movie.cover_url" class="img-fluid cover-height" />
-
-
+      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3">
+        <img
+        class="img-fluid cover-height"
+        [src]="movie.cover_url"
+        [alt]="movie.title"
+        *ngIf="
+        movie.cover_url != null &&
+        movie.cover_url &&
+        movie.cover_url != '';
+          else imagenotfound
+        "
+      />
       </div>
-      <div class="col-sm-12 col-md-9 col-lg-9">
+      <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
         <!-- {{ movie.trailer_url }} -->
         <div class="form-group row">
           <h1 class="col display-1">
@@ -37,13 +44,22 @@
         <blockquote class="blockquote">
           <p>{{ movie.overview }}</p>
         </blockquote>
-        <iframe width="560" height="315" [src]="
+        <!-- <iframe width="560" height="315" [src]="
             'https://www.youtube.com/embed/' +
               getYoutubeUrlId(movie.trailer_url) | safeurl: 'resourceUrl'
           " title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+          allowfullscreen></iframe> -->
       </div>
     </div>
   </mat-dialog-content>
 </ng-container>
+
+<ng-template #imagenotfound>
+  <img
+    src="assets/image-not-found.jpg"
+    alt="Image not found"
+    class="img-fluid"
+    style="height: 450px"
+  />
+</ng-template>

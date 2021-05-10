@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { TvShows } from 'src/app/models/tv-shows.interface';
 import { MarvelService } from 'src/app/services/marvel.service';
+import { TvShowDetailComponent } from '../tv-show-detail/tv-show-detail.component';
 
 @Component({
   selector: 'app-tv-show-list',
@@ -19,7 +21,7 @@ export class TvShowListComponent implements OnInit {
   pageNumber = 1;
   pageSizeOption = [1,5,10,15];
 
-  constructor(private marvelService: MarvelService) { }
+  constructor(private marvelService: MarvelService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTvShows();
@@ -55,5 +57,9 @@ export class TvShowListComponent implements OnInit {
     if(this.searchText==''){
       this.getTvShows();
     }
+  }
+
+  openDialog(id: number){
+    this.dialog.open(TvShowDetailComponent, { data: { tvShowId: id } });
   }
 }

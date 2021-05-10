@@ -41,7 +41,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.marvelMoviesSub = this._marvelService
       .getAllMovies(this.pageNumber, this.pageSize)
       .subscribe((data) => {
-        console.log(data);
         this.movieList = data.movies;
         this.totalPage = data.totalMovies;
         this.loading = false;
@@ -55,7 +54,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   filterMovies() {
-    console.log(this.searchText);
     this.loading = true;
     this._marvelService.getFilteredMovies(this.searchText).subscribe((data) => {
       this.movieList = data.movies;
@@ -71,7 +69,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   openDialog(id: number) {
-    console.log('id', id);
     this.dialog.open(MovieDetailComponent, { data: { movieId: id } });
   }
 }

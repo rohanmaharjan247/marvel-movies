@@ -19,7 +19,6 @@ export class TvShowDetailComponent implements OnInit {
 
   getTvShowDetail(){
     this.marvelService.getTvShowById(this.data.tvShowId).subscribe((data)=>{
-      console.log(data);
       this.tvShow = data.tvshow;
     })
   }
