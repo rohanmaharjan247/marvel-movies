@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:server": "ng build && nodemon server.js",
-    "heroku-post-build": "ng build --prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "engines": {
     "node": "14.16.0",
