@@ -8,38 +8,31 @@
             <ng-container *ngIf="loadingMovies">
               <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </ng-container>
-            <ng-container *ngIf="upcomingMovie && !loadingMovies">
-              <a
-                href="javascript:;"
-                (click)="openDialog(upcomingMovie.id, 'moviedetail')"
-              >
-                <mat-card>
-                  <mat-card-header>
-                    <mat-card-title>{{ upcomingMovie.title }}</mat-card-title>
-                    <mat-card-subtitle>{{
-                      upcomingMovie.release_date | date: "mediumDate"
-                    }}</mat-card-subtitle>
-                  </mat-card-header>
+            <ng-container *ngIf="!loadingMovies">
+              <ng-container *ngIf="upcomingMovie; else noMovieFound">
+                <a href="javascript:;" (click)="openDialog(upcomingMovie.id, 'moviedetail')">
+                  <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>{{ upcomingMovie.title }}</mat-card-title>
+                      <mat-card-subtitle>{{
+                        upcomingMovie.release_date | date: "mediumDate"
+                      }}</mat-card-subtitle>
+                    </mat-card-header>
 
-                  <img
-                    mat-card-image
-                    [src]="upcomingMovie.cover_url"
-                    [alt]="upcomingMovie.title"
-                  />
-                  <div class="cover-main mat-card-image">
-                    <div class="countdown-overlay">
-                      <app-count-down
-                        [dDay]="upcomingMovie.release_date"
-                      ></app-count-down>
+                    <img mat-card-image [src]="upcomingMovie.cover_url" [alt]="upcomingMovie.title" />
+                    <div class="cover-main mat-card-image">
+                      <div class="countdown-overlay">
+                        <app-count-down [dDay]="upcomingMovie.release_date"></app-count-down>
+                      </div>
                     </div>
-                  </div>
-                  <mat-card-content>
-                    <div>
-                      {{ upcomingMovie.overview }}
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </a>
+                    <mat-card-content>
+                      <div>
+                        {{ upcomingMovie.overview }}
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </a>
+              </ng-container>
             </ng-container>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -47,37 +40,30 @@
             <ng-container *ngIf="loadingTvShows">
               <mat-progress-bar mode="indeterminate"></mat-progress-bar>
             </ng-container>
-            <ng-container *ngIf="upcomingTvShow && !loadingTvShows">
-              <a
-                href="javascript:;"
-                (click)="openDialog(upcomingTvShow.id, 'tvshowdetail')"
-              >
-                <mat-card>
-                  <mat-card-header>
-                    <mat-card-title>{{ upcomingTvShow.title }}</mat-card-title>
-                    <mat-card-subtitle>{{
-                      upcomingTvShow.release_date | date: "mediumDate"
-                    }}</mat-card-subtitle>
-                  </mat-card-header>
-                  <img
-                    mat-card-image
-                    [src]="upcomingTvShow.cover_url"
-                    [alt]="upcomingTvShow.title"
-                  />
-                  <div class="cover-main mat-card-image">
-                    <div class="countdown-overlay">
-                      <app-count-down
-                        [dDay]="upcomingTvShow.release_date"
-                      ></app-count-down>
+            <ng-container *ngIf="!loadingTvShows">
+              <ng-container *ngIf="upcomingTvShow; else noTvShowFound">
+                <a href="javascript:;" (click)="openDialog(upcomingTvShow.id, 'tvshowdetail')">
+                  <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>{{ upcomingTvShow.title }}</mat-card-title>
+                      <mat-card-subtitle>{{
+                        upcomingTvShow.release_date | date: "mediumDate"
+                      }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="upcomingTvShow.cover_url" [alt]="upcomingTvShow.title" />
+                    <div class="cover-main mat-card-image">
+                      <div class="countdown-overlay">
+                        <app-count-down [dDay]="upcomingTvShow.release_date"></app-count-down>
+                      </div>
                     </div>
-                  </div>
-                  <mat-card-content>
-                    <div>
-                      {{ upcomingTvShow.overview }}
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </a>
+                    <mat-card-content>
+                      <div>
+                        {{ upcomingTvShow.overview }}
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </a>
+              </ng-container>
             </ng-container>
           </div>
         </div>
@@ -91,18 +77,12 @@
         <ng-container *ngIf="loadingBoxOffice">
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </ng-container>
-        <ul
-          class="list-group list-group-flush"
-          *ngIf="topBoxOffice && !loadingBoxOffice"
-        >
-          <li
-            class="list-group-item d-flex justify-content-between align-items-start"
-            *ngFor="let boxOffice of topBoxOffice"
-          >
+        <ul class="list-group list-group-flush" *ngIf="topBoxOffice && !loadingBoxOffice">
+          <li class="list-group-item d-flex justify-content-between align-items-start"
+            *ngFor="let boxOffice of topBoxOffice">
             <div class="ms-2 me-auto">
               <div class="mb-1 fw-bold">{{ boxOffice.title }}</div>
-              <div
-                >Released:
+              <div>Released:
                 {{ boxOffice.release_date | date: "mediumDate" }}
               </div>
               <div class="mb-1">
@@ -120,11 +100,9 @@
         <ng-container *ngIf="loadingTvShoInfo">
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </ng-container>
-        <ul
-          class="list-group list-group-flush"
-          *ngIf="tvShowInfo && !loadingTvShoInfo"
-        >
-          <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let tvShow of tvShowInfo">
+        <ul class="list-group list-group-flush" *ngIf="tvShowInfo && !loadingTvShoInfo">
+          <li class="list-group-item d-flex justify-content-between align-items-start"
+            *ngFor="let tvShow of tvShowInfo">
             <div class="ms-2 me-auto">
               <div class="mb-1 fw-bold">{{ tvShow.title }}</div>
               <div>Released: {{ tvShow.release_date | date: "mediumDate" }}</div>
@@ -139,3 +117,10 @@
     </div>
   </div>
 </div>
+
+<ng-template #noMovieFound>
+  <p class="text-center">No upcoming Movie announced. Looks like you have to wait just like the rest of us :).</p>
+</ng-template>
+<ng-template #noTvShowFound>
+  <p class="text-center">No upcoming TV Show announce. Looks like you have to wait just like the rest of us :).</p>
+</ng-template>
