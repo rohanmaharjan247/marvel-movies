@@ -12,24 +12,20 @@
               <ng-container *ngIf="upcomingMovie; else noMovieFound">
                 <a href="javascript:;" (click)="openDialog(upcomingMovie.id, 'moviedetail')">
                   <mat-card>
+
+
+                    <img mat-card-image [src]="upcomingMovie.cover_url" [alt]="upcomingMovie.title" />
+                    <div class="cover-main countdown-card-image">
+                      <div class="countdown-overlay">
+                        <app-count-down [dDay]="upcomingMovie.release_date"></app-count-down>
+                      </div>
+                    </div>
                     <mat-card-header>
                       <mat-card-title>{{ upcomingMovie.title }}</mat-card-title>
                       <mat-card-subtitle>{{
                         upcomingMovie.release_date | date: "mediumDate"
                       }}</mat-card-subtitle>
                     </mat-card-header>
-
-                    <img mat-card-image [src]="upcomingMovie.cover_url" [alt]="upcomingMovie.title" />
-                    <div class="cover-main mat-card-image">
-                      <div class="countdown-overlay">
-                        <app-count-down [dDay]="upcomingMovie.release_date"></app-count-down>
-                      </div>
-                    </div>
-                    <mat-card-content>
-                      <div>
-                        {{ upcomingMovie.overview }}
-                      </div>
-                    </mat-card-content>
                   </mat-card>
                 </a>
               </ng-container>

@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        console.log(data);
         this.upcomingMovie = data;
         this.loadingMovies = false;
       });
@@ -67,7 +66,6 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        console.log('tv shows', data);
         this.upcomingTvShow = data;
         this.loadingTvShows = false;
       });
@@ -90,12 +88,11 @@ export class HomeComponent implements OnInit {
   }
 
   openDialog(id:number, selector:string){
-    console.log('id', id);
     if(selector == 'moviedetail'){
-      this.dialog.open(MovieDetailComponent, {data: {movieId: id}});
+      this.dialog.open(MovieDetailComponent, {data: {movieId: id}, panelClass: 'modal-padding-0', width: '750px'});
     }
     else if(selector == 'tvshowdetail'){
-      this.dialog.open(TvShowDetailComponent, {data: {tvShowId: id}});
+      this.dialog.open(TvShowDetailComponent, {data: {tvShowId: id}, panelClass: 'modal-padding-0', width: '750px'});
     }
 
   }

@@ -1,48 +1,39 @@
 <ng-container *ngIf="tvShow">
-  <h2 mat-dialog-title>{{ tvShow.title }}</h2>
-
+  <app-youtube-player
+  [videoId]="tvShow.trailer_url | youtubeId"
+  *ngIf="tvShow.trailer_url.includes('youtu.be'); else iframePlayer"
+></app-youtube-player>
   <mat-dialog-content class="mat-typography">
     <div class="row">
-      <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3">
-        <img [src]="tvShow.cover_url" class="img-fluid" />
-      </div>
-      <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
-        <!-- {{ tvShow.trailer_url }} -->
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="form-group row">
-          <h1 class="col display-1">
+          <h1 class="col-8 display-1">
             {{ tvShow.title }}
             <h3 class="display-3 m-0" *ngIf="tvShow.directed_by && tvShow.directed_by!=null">
               Directed By: {{ tvShow.directed_by }}
             </h3>
           </h1>
 
-          <div class="col text-end" *ngIf="tvShow.release_date && tvShow.release_date!=null">
+          <div class="col-4 text-end" *ngIf="tvShow.release_date && tvShow.release_date!=null">
             <h3 class="display-3">{{ tvShow.release_date | date: "mediumDate" }}</h3>
           </div>
         </div>
 
-        <blockquote class="blockquote">
-          <p>{{ tvShow.overview }}</p>
-        </blockquote>
-        <iframe
-        width="560"
-        height="315"
-        [src]="tvShow.trailer_url | safeurl: 'resourceUrl'"
-        frameborder = "0"
-        allowfullscreen>
-      </iframe>
-        <!-- <iframe
-        width="560"
-        height="315"
-        [src]="'https://www.youtube.com/embed/'+ getYoutubeUrlId(tvShow.trailer_url) | safeurl: 'resourceUrl'"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe> -->
+        <p>{{ tvShow.overview }}</p>
       </div>
     </div>
 
 
   </mat-dialog-content>
 </ng-container>
+<ng-template #iframePlayer>
+  <iframe
+    width="100%"
+    height="420"
+    [src]="tvShow.trailer_url | safeurl: 'resourceUrl'"
+    [title]="tvShow.title"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</ng-template>

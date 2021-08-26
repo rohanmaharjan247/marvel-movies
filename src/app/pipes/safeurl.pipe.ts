@@ -9,7 +9,6 @@ export class SafeurlPipe implements PipeTransform {
   constructor(private domSanitzer: DomSanitizer){}
 
   transform(value:string, type:string): SafeHtml | SafeUrl | SafeResourceUrl | SafeStyle | SafeScript {
-    debugger;
     switch(type){
       case 'html': return this.domSanitzer.bypassSecurityTrustHtml(value);
       case 'style': return this.domSanitzer.bypassSecurityTrustStyle(value);

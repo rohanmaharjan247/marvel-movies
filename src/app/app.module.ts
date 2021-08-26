@@ -1,3 +1,4 @@
+import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CountDownComponent } from './count-down/count-down.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { YoutubeIdPipe } from './pipes/youtube-id.pipe';
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
@@ -40,6 +43,8 @@ export function getBaseUrl() {
     SafeurlPipe,
     TvShowDetailComponent,
     CountDownComponent,
+    YoutubePlayerComponent,
+    YoutubeIdPipe
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ export function getBaseUrl() {
     MatInputModule,
     MatIconModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    YouTubePlayerModule
   ],
   providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }],
   bootstrap: [AppComponent],

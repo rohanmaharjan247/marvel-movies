@@ -19,18 +19,20 @@ export class MarvelService {
   getAllMovies(currentPage: number, pageSize: number) {
     return this.httpClient
       .get<{ message: string; movies: Movies[]; totalMovies: number }>(
-        `${this.apiUrl}api/mcu/movies`,
-        {
-          params: new HttpParams()
-            .set('currentPage', String(currentPage))
-            .set('pageSize', String(pageSize)),
-        }
+        `${this.apiUrl}api/mcu/movies`
+        // ,
+        // {
+        //   params: new HttpParams()
+        //     .set('currentPage', String(currentPage))
+        //     .set('pageSize', String(pageSize))
+        //     .set('filter', 'overview')
+        // }
       )
       .pipe(
         map((moviesData) => {
           return {
             message: moviesData.message,
-            movies: moviesData.movies.map((mapData) => {
+            movies: moviesData.movies.filter(m => m.overview !== null && m.trailer_url !== null).map((mapData) => {
               if (mapData.release_date != null) {
                 mapData.release_date = new Date(mapData.release_date);
               }

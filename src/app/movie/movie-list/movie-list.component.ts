@@ -69,6 +69,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
   }
 
   openDialog(id: number) {
-    this.dialog.open(MovieDetailComponent, { data: { movieId: id } });
+    this.dialog.open(MovieDetailComponent, { data: { movieId: id }, panelClass: 'modal-padding-0', width: '750px' });
   }
 }

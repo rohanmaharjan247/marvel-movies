@@ -30,7 +30,6 @@ export class TvShowListComponent implements OnInit {
   getTvShows(){
     this.loading = true;
     this.marvelService.getAllTvShows(this.pageNumber, this.pageSize).subscribe((data)=>{
-      console.log("Rv shw", data.tvShows);
       this.tvShowList = data.tvShows;
       this.totalPage = data.totalTvshows
       this.loading = false;
@@ -44,7 +43,6 @@ export class TvShowListComponent implements OnInit {
   }
 
   filterMovies(){
-    console.log(this.searchText);
     this.loading = true;
     this.marvelService.getFilteredTvShows(this.searchText).subscribe((data)=>{
       this.tvShowList = data.tvShows;
@@ -60,6 +58,6 @@ export class TvShowListComponent implements OnInit {
   }
 
   openDialog(id: number){
-    this.dialog.open(TvShowDetailComponent, { data: { tvShowId: id } });
+    this.dialog.open(TvShowDetailComponent, { data: { tvShowId: id }, panelClass: 'modal-padding-0', width: '750px' });
   }
 }

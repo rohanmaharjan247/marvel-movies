@@ -92,7 +92,6 @@ export class CountDownComponent implements OnInit, OnDestroy {
   }
 
   private getDaysInaMonth(month: number): number {
-    console.log(month, 'month');
     switch (true) {
       case month % 2 == 0 && month !== 1:
       case month === 7:
