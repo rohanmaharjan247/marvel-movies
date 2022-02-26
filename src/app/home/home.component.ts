@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
 
   getTvShowInfo(){
     this.loadingTvShoInfo = true;
-    this.marvelService.getAllTvShows(1, 5).subscribe((data)=>{
+    this.marvelService.getAllTvShows(1, 2).subscribe((data)=>{
       this.tvShowInfo = data.tvShows;
       this.loadingTvShoInfo = false;
     })

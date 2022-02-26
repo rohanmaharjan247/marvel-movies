@@ -3,9 +3,21 @@
   text-transform: uppercase;
   border-bottom: 2px solid #EC1D24;
   color: #202020;
+  a:hover{
+    .show{
+      opacity: 1;
+    }
+  }
+  .show{
+    opacity: 0;
+    font-size: 1rem;
+    transition: opacity 250ms ease-in-out;
+  }
 }
 
 .countdown-card-image{
   margin-left: -16px;
   margin-right: -16px;
 }
+
+

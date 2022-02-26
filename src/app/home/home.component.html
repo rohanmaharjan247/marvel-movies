@@ -12,8 +12,6 @@
               <ng-container *ngIf="upcomingMovie; else noMovieFound">
                 <a href="javascript:;" (click)="openDialog(upcomingMovie.id, 'moviedetail')">
                   <mat-card>
-
-
                     <img mat-card-image [src]="upcomingMovie.cover_url" [alt]="upcomingMovie.title" />
                     <div class="cover-main countdown-card-image">
                       <div class="countdown-overlay">
@@ -24,7 +22,7 @@
                       <mat-card-title>{{ upcomingMovie.title }}</mat-card-title>
                       <mat-card-subtitle>{{
                         upcomingMovie.release_date | date: "mediumDate"
-                      }}</mat-card-subtitle>
+                        }}</mat-card-subtitle>
                     </mat-card-header>
                   </mat-card>
                 </a>
@@ -40,23 +38,18 @@
               <ng-container *ngIf="upcomingTvShow; else noTvShowFound">
                 <a href="javascript:;" (click)="openDialog(upcomingTvShow.id, 'tvshowdetail')">
                   <mat-card>
-                    <mat-card-header>
-                      <mat-card-title>{{ upcomingTvShow.title }}</mat-card-title>
-                      <mat-card-subtitle>{{
-                        upcomingTvShow.release_date | date: "mediumDate"
-                      }}</mat-card-subtitle>
-                    </mat-card-header>
                     <img mat-card-image [src]="upcomingTvShow.cover_url" [alt]="upcomingTvShow.title" />
                     <div class="cover-main mat-card-image">
                       <div class="countdown-overlay">
                         <app-count-down [dDay]="upcomingTvShow.release_date"></app-count-down>
                       </div>
                     </div>
-                    <mat-card-content>
-                      <div>
-                        {{ upcomingTvShow.overview }}
-                      </div>
-                    </mat-card-content>
+                    <mat-card-header>
+                      <mat-card-title>{{ upcomingTvShow.title }}</mat-card-title>
+                      <mat-card-subtitle>{{
+                        upcomingTvShow.release_date | date: "mediumDate"
+                        }}</mat-card-subtitle>
+                    </mat-card-header>
                   </mat-card>
                 </a>
               </ng-container>
@@ -92,7 +85,9 @@
 
     <div class="card mt-2">
       <div class="card-body">
-        <h1 class="display-1 card-title upcoming">TV Show Info</h1>
+        <h1 class="display-1 card-title upcoming">
+          <a [routerLink]="['/all-tv-shows']">TV Show <span class="show">Show More >></span></a>
+        </h1>
         <ng-container *ngIf="loadingTvShoInfo">
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </ng-container>
